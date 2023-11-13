@@ -5,9 +5,12 @@ import { CheckIcon, ClockIcon, CurrencyDollarIcon, UserCircleIcon } from '@heroi
 import Link from 'next/link';
 import { Button } from '@/app/ui/button';
 import { updateInvoice } from '@/app/lib/actions';
+import { useFormState } from 'react-dom';
 
 export default function EditInvoiceForm({ invoice, customers }: { invoice: InvoiceForm; customers: CustomerField[] }) {
+  const initialState = { message: null, errors: {} };
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+  const [state, dispatch] = useFormState(updateInvoiceWithId, initialState);
   return (
     <form action={updateInvoiceWithId}>
       <input type="hidden" name="id" value={invoice.id} />
@@ -109,4 +112,10 @@ export default function EditInvoiceForm({ invoice, customers }: { invoice: Invoi
       </div>
     </form>
   );
+}
+function useFormState(
+  updateInvoiceWithId: (formData: FormData) => Promise<{ message: string } | undefined>,
+  initialState: { message: null; errors: {} }
+): [any, any] {
+  throw new Error('Function not implemented.');
 }
