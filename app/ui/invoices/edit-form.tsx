@@ -113,9 +113,3 @@ export default function EditInvoiceForm({ invoice, customers }: { invoice: Invoi
     </form>
   );
 }
-function useFormState(
-  updateInvoiceWithId: (formData: FormData) => Promise<{ message: string } | undefined>,
-  initialState: { message: null; errors: {} }
-): [any, any] {
-  throw new Error('Function not implemented.');
-}
